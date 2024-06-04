@@ -1,191 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- <script src="lib.js"></script> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis Predios</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Estilos de Bootstrap con tema Cyborg de Bootswatch -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/cyborg/bootstrap.min.css">
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-              <h1>Agenda Telefonica</h1>
-              <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" >Agregar contacto</button>
-              <button class="btn btn-primary mb-3" onclick="logout()">Cerrar sesión</button>
-              <table class="table table-success table-striped">
-                  <tr>
-                      <th>Nombre</th>
-                      <th>Apellido paterno</th>
-                      <th>Apellido materno</th>
-                      <th>Correo electrónico</th>
-                      <th>Teléfono</th>
-                      <th>Fecha de nacimiento</th>
-                      <th>Foto</th>
-                      <th>Acciones</th>
-                  </tr>
-                  
-                  <% datos.forEach(function(contacto){ %>
-                  <tr pos= <%= contacto.id %>>
-                      <td><%= contacto.nombre %></td>
-                      <td><%= contacto.apellido_paterno %></td>
-                      <td><%= contacto.apellido_materno %></td>
-                      <td><%= contacto.telefono %></td>
-                      <td><%= contacto.email %></td>
-                      <td><%= contacto.fecha_nacimiento.getDate()+'/'+
-                          contacto.fecha_nacimiento.getMonth()+'/'+
-                          contacto.fecha_nacimiento.getFullYear() %></td>
-                      <!-- <td><%= contacto.foto %></td> -->
-                      <td><img nom=<%= contacto.foto %> src= <%= 'http://localhost:3000/images/'+contacto.foto %> alt="foto" width="100" height="200"></td>
-                      <td>
-                          <button class="btn btn-warning" onclick="show_editar(this);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
-                          </svg></button>
-                          <button class="btn btn-danger" onclick="eliminar(this);"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                          </svg> </button>
-                      </td>
-                  </tr>
-                  <%})  %>
-
-
-              </table>
-
-            </div> <!-- columna-->
-        </div> <!-- renglob-->
-    </div> <!-- Contenedor-->
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Alta de contacto</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <form>
-        <div class="row">
-          <!--  -->
-          <div class="col-4">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre" required>
-          </div>
-          <div class="col-4">
-            <label for="ap_pat" class="form-label">Apellido paterno</label>
-            <input type="text" class="form-control" id="ap_pat" required>            
-          </div>
-          <div class="col-4">
-            <label for="ap_mat" class="form-label">Apellido materno</label>
-            <input type="text" class="form-control" id="ap_mat" required>              
-          </div>         
-          <!--  -->
-          <div class="col-4">
-            <label for="e-mail" class="form-label">Correo electrónico</label>
-            <input type="text" class="form-control" id="e_mail" required>
-          </div>
-          <div class="col-4">
-            <label for="fnac" class="form-label">Fecha nacimiento</label>
-            <input type="date" class="form-control" id="fnac" required>            
-          </div>
-          <div class="col-4">
-            <label for="telefono" class="form-label">Teléfono</label>
-            <input type="text" class="form-control" id="telefono" required>              
-          </div>
-          <!--  -->
-          <div class="col-8">
-            <label for="modal-footer" class="form-label">Fotografía</label>
-            <input accept=".jpg, .png" type="file" class="form-control" id="foto" required>              
-          </div>
-
-          <div class="col-4">
-          </div>
-          <!--  -->
-
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col">
+        <h1>Predios Registrados</h1>
+        <!-- Botón de Nuevo Predio y Cerrar Sesión -->
+        <div class="d-flex justify-content-between mb-3">
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="bi bi-plus-circle"></i> Nuevo Predio
+          </button>
+          <button class="btn btn-danger" onclick="logout()">
+            <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+          </button>
         </div>
-      </form>  
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" onclick="envia();">Guardar contacto</button>
+        <table class="table table-dark table-striped">
+          <thead>
+            <tr>
+              <th>Número de Predio</th>
+              <th>Número de Usuario</th>
+              <th>Nombre del Predio</th>
+              <th>Nombre del Propietario</th>
+              <th>Tipo de Cultivo</th>
+              <th>Cuerpos de Agua</th>
+              <th>Tipo de Cuerpo de Agua</th>
+              <th>Dirección</th>
+              <th>Ciudad</th>
+              <th>Estado</th>
+              <th>País</th>
+              <th>Tamaño del Predio</th>
+              <th>Tipo de Riego</th>
+              <th>Tipo de Suelo</th>
+              <th>Coordenadas</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% datos.forEach(function(predios) { %>
+            <tr pos="<%= predios.id %>">
+              <td><%= predios.numero_predio %></td>
+              <td><%= predios.numero_usuario %></td>
+              <td><%= predios.nombre_predio %></td>
+              <td><%= predios.nombre_propietario %></td>
+              <td><%= predios.tipo_cultivo %></td>
+              <td><%= predios.cuerpos_agua %></td>
+              <td><%= predios.tipo_cuerpo_agua %></td>
+              <td><%= predios.direccion %></td>
+              <td><%= predios.ciudad %></td>
+              <td><%= predios.estado %></td>
+              <td><%= predios.pais %></td>
+              <td><%= predios.tam_predio %></td>
+              <td><%= predios.tipo_riego %></td>
+              <td><%= predios.tipo_suelo %></td>
+              <td><%= predios.coordenadas %></td>
+              <td>
+                <button class="btn btn-warning btn-sm" onclick="show_editar(this);">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn btn-danger btn-sm" onclick="eliminar(this);">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-</div>
 
-
-<!-- Modal Insercion contacto-->
-<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel2">Actualizar datos</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <form>
-        <div class="row">
-          <!--  -->
-          <div class="col-4">
-            <label for="nombre2" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre2" required>
-          </div>
-          <div class="col-4">
-            <label for="ap_pat2" class="form-label">Apellido paterno</label>
-            <input type="text" class="form-control" id="ap_pat2" required>            
-          </div>
-          <div class="col-4">
-            <label for="ap_mat2" class="form-label">Apellido materno</label>
-            <input type="text" class="form-control" id="ap_mat2" required>              
-          </div>         
-          <!--  -->
-          <div class="col-4">
-            <label for="e-mail2" class="form-label">Correo electrónico</label>
-            <input type="text" class="form-control" id="e_mail2" required>
-          </div>
-          <div class="col-4">
-            <label for="fnac2" class="form-label">Fecha nacimiento</label>
-            <input type="date" class="form-control" id="fnac2" required>            
-          </div>
-          <div class="col-4">
-            <label for="telefono2" class="form-label">Teléfono</label>
-            <input type="text" class="form-control" id="telefono2" required>              
-          </div>
-          <!--  -->
-          <div class="col-8">
-            <label for="foto2" class="form-label">Fotografía</label>
-            <input accept=".jpg, .png" type="file" class="form-control" id="foto2" required>              
-          </div>
-
-          <div class="col-4" >
-            <img class="pt-4 " id='imagen' src="" alt="foto" height="65" width="65">
-            <input type="hidden" id="nom_foto">
-            <input type="hidden" id="contacto_id">
-          </div>
-          <!--  -->
-
+  <!-- Modal start -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Alta de contacto</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-      </form>  
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" onclick="modifica();">Actualizar contacto</button>
+        <div class="modal-body">
+          <form>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="numero_usuario" class="form-label">Número del usuario</label>
+                <input type="text" class="form-control" id="numero_usuario" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="nombre_predio" class="form-label">Nombre del predio</label>
+                <input type="text" class="form-control" id="nombre_predio" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="nombre_propietario" class="form-label">Nombre del propietario</label>
+                <input type="text" class="form-control" id="nombre_propietario" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="tipo_cultivo" class="form-label">Tipo de cultivo</label>
+                <input type="text" class="form-control" id="tipo_cultivo" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="cuerpos_agua" class="form-label">Cuerpos de agua</label>
+                <select class="form-select" id="cuerpos_agua" required>
+                  <option value="">Selecciona una opción</option>
+                  <option value="si">Sí</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="tipo_cuerpo_agua" class="form-label">Tipo de cuerpo de agua</label>
+                <select class="form-select" id="tipo_cuerpo_agua" required>
+                  <option value="">Selecciona una opción</option>
+                  <option value="Natural">Natural</option>
+                  <option value="Artificial">Artificial</option>
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="direccion" class="form-label">Dirección</label>
+                <input type="text" class="form-control" id="direccion" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="ciudad" class="form-label">Ciudad</label>
+                <input type="text" class="form-control" id="ciudad" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="estado" class="form-label">Estado</label>
+                <input type="text" class="form-control" id="estado" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="pais" class="form-label">País</label>
+                <input type="text" class="form-control" id="pais" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="tam_predio" class="form-label">Tamaño del predio</label>
+                <input type="text" class="form-control" id="tam_predio" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="tipo_riego" class="form-label">Tipo de riego</label>
+                <input type="text" class="form-control" id="tipo_riego" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="tipo_suelo" class="form-label">Tipo de suelo</label>
+                <input type="text" class="form-control" id="tipo_suelo" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="coordenadas" class="form-label">Coordenadas</label>
+                <input type="text" class="form-control" id="coordenadas" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="imagen" class="form-label">Imagen</label>
+                <input type="text" class="form-control" id="imagen" required>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" onclick="envia();">Guardar contacto</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <!-- Modal ends -->
 
-    <!-- archivos de boostrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib.js"></script>
-  </body>
+  <!-- archivos de bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="lib.js"></script>
+</body>
 </html>
-
-

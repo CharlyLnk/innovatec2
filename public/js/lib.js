@@ -26,28 +26,45 @@ async function eliminar(nodo){
 //Funcion que envia datos al servidor, para insertar un nuevo contacto 
 async function envia(){
   alert('Se van a enviar los datos');
-  let foto = document.getElementById('foto');
-  let nombre = document.getElementById('nombre').value;
   // let nombre = $('#nombre').value;
-  let ap_pat = document.getElementById('ap_pat').value;
-  let ap_mat = document.getElementById('ap_mat').value;
-  let e_mail = document.getElementById('e_mail').value;
-  let fnac = document.getElementById('fnac').value;
-  let telefono = document.getElementById('telefono').value;
+  let nombre_predio = document.getElementById('nombre_predio').value;
+  let numero_usuario = document.getElementById('numero_usuario').value;
+  let nombre_propietario = document.getElementById('nombre_propietario').value;
+  let tipo_cultivo = document.getElementById('tipo_cultivo').value;
+  let cuerpos_agua = document.getElementById('cuerpos_agua').value;
+  let natural_artificial = document.getElementById('natural_artificial').value;
+  let direccion = document.getElementById('direccion').value;
+  let ciudad = document.getElementById('ciudad').value;
+  let estado = document.getElementById('estado').value;
+  let pais = document.getElementById('pais').value;
+  let tam_predio = document.getElementById('tam_predio').value;
+  let tipo_riego = document.getElementById('tipo_riego').value;
+  let tipo_suelo = document.getElementById('tipo_suelo').value;
+  let coordenadas = document.getElementById('coordenadas').value;
+  let imagen = document.getElementById('imagen').value;
 
-  if (foto.value == ''){
+/*   if (imagen.value == ''){
      alert('Debe seleccionar un archivo');
      return
   }
-
+ */
   const formData = new FormData()
-  formData.append('foto',foto.files[0]);
-  formData.append('nom',nombre);
-  formData.append('ap_pat',ap_pat);
-  formData.append('ap_mat',ap_mat);
-  formData.append('e_mail',e_mail);
-  formData.append('fnac',fnac);
-  formData.append('telefono',telefono);
+  //formData.append('imagen',imagen.files[0]);
+  formData.append('imagen',imagen);
+  formData.append('nombre_predio',nombre_predio);
+  formData.append('numero_usuario',numero_usuario);
+  formData.append('nombre_propietario',nombre_propietario);
+  formData.append('tipo_cultivo',tipo_cultivo);
+  formData.append('cuerpos_agua',cuerpos_agua);
+  formData.append('natural_artificial',natural_artificial);
+  formData.append('direccion',direccion);
+  formData.append('ciudad',ciudad);
+  formData.append('estado',estado);
+  formData.append('pais',pais);
+  formData.append('tam_predio',tam_predio);
+  formData.append('tipo_riego',tipo_riego);
+  formData.append('tipo_suelo',tipo_suelo);
+  formData.append('coordenadas',coordenadas);
 
   let respo = await fetch('http://localhost:3000/datos',{
     method: 'POST',
@@ -166,15 +183,16 @@ function show_editar(nodo){
 //--------------------------------------------------------
 
 async function login(){
-  alert('Iniciar sesion')
+  alert('Login');
 
   let usuario = document.getElementById('usu').value;
   let clave = document.getElementById('cve').value;
-
+ // let numero_usuario = document.getElementById('numero_usuario').values;
   const formData = new FormData()
   formData.append('usuario',usuario);
   formData.append('clave',clave);
-
+  //formData.append('numero_usuario',numero_usuario);
+  
   let respo = await fetch('http://localhost:3000/login',{
     method: 'POST',
     body: formData
@@ -188,7 +206,9 @@ async function login(){
     alert('Hubo un error');
   }
 }
-async function logout(){
-  alert('Cerrando sesion');
-  location.href = 'http://localhost:3000/logout'
+
+function logout() {
+  alert('logout');
+  window.location.href = 'http://localhost:3000/logout';
 }
+
