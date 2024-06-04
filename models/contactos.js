@@ -3,7 +3,7 @@ const db = require('../conection');
 async function consultar(){
     let results = db
     .promise()
-    .query('SELECT * from contactos')
+    .query('SELECT * from predios')
     .then( ([results]) => {
         return results
     })
@@ -13,7 +13,7 @@ async function consultar(){
 async function baja(id){
     let results = db
     .promise()
-    .query('DELETE from contactos WHERE id= ?',[id],(error, result, fields)=>{
+    .query('DELETE from predios WHERE id= ?',[id],(error, result, fields)=>{
         if (error) return console.error(error.message)
     })
     .then( () => {
@@ -22,10 +22,10 @@ async function baja(id){
 }
 
 async function alta(datos){
-  let datos2 = [datos.nombre, datos.ap_pat, datos.ap_mat, datos.email, datos.tel, datos.fnac, datos.foto];
+  let datos2 = [datos.numero_predio, datos.numero_usuario, datos.nombre_predio, datos.nombre_propietario, datos.tipo_cultivo, datos.cuerpos_agua, datos.natural_artificial, datos.direccion, datos.ciudad, datos.estado, datos.pais, datos.tam_predio, datos.tipo_riego, datos.tipo_suelo, datos.coordenadas, datos.imagen];
   let query = db
   .promise()
-  .query('INSERT INTO contactos (nombre, apellido_paterno, apellido_materno, email,telefono, fecha_nacimiento, foto) VALUES (?,?,?,?,?,?,?)',datos2)
+  .query('INSERT INTO predios (numero_predio, numero_usuario, nombre_predio, nombre_propietario, tipo_cultivo, cuerpos_agua, natural_artificial, direccion, ciudad, estado, pais, tam_predio, tipo_riego, tipo_suelo, coordenadas, imagen) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',datos2)
   .then(()=>{
     console.log('datos insertados')
   })
@@ -37,7 +37,7 @@ async function modi(datos, id){
     //let datos2 = [datos.nombre, datos.ap_pat, datos.ap_mat, datos.email, datos.tel, datos.fnac, datos.foto];
     console.log(datos)
     console.log('>>>>>>'+id+'<<<<<<')
-    const text_query = `UPDATE contactos SET nombre = "${datos.nombre}", apellido_paterno = "${datos.ap_pat}", apellido_materno = "${datos.ap_mat}", email = "${datos.email}",telefono = "${datos.tel}", fecha_nacimiento = "${datos.fnac}", foto = "${datos.foto}" WHERE id = "${id}" `;
+    const text_query = `UPDATE predios SET nombre = "${datos.nombre}", apellido_paterno = "${datos.ap_pat}", apellido_materno = "${datos.ap_mat}", email = "${datos.email}",telefono = "${datos.tel}", fecha_nacimiento = "${datos.fnac}", foto = "${datos.foto}" WHERE id = "${id}" `;
  
     console.log(text_query)
 

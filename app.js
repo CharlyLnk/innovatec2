@@ -93,29 +93,36 @@ app.post('/baja', (req, res)=>{
 
 app.post('/datos', async (req, res)=>{
   console.log(req.files);
-
-  const image = req.files.foto;
-  const tiempo = Date.now();
-  const path = __dirname+'/images/'+tiempo+image.name;
+  //const image = req.files.foto;
+  //const tiempo = Date.now();
+  //const path = __dirname+'/images/'+tiempo+image.name;
 
   const new_contacto = {
-   nombre : req.body.nom,
-   ap_pat : req.body.ap_pat,
-   ap_mat : req.body.ap_mat,
-   tel : req.body.telefono,
-   email : req.body.e_mail,
-   fnac : req.body.fnac,
-   foto : tiempo+image.name,
+    nombre_predio : req.body.nombre_predio,
+    numero_usuario : req.body.numero_usuario,
+    nombre_propietario : req.body.nombre_propietario,
+    tipo_cultivo : req.body.tipo_cultivo,
+    cuerpos_agua : req.body.cuerpos_agua,
+    natural_artificial : req.body.natural_artificial,
+    direccion : req.body.direccion,
+    ciudad : req.body.ciudad,
+    estado : req.body.estado,
+    pais : req.body.pais,
+    tam_predio : req.body.tam_predio,
+    tipo_riego : req.body.tipo_riego,
+    tipo_suelo : req.body.tipo_suelo,
+    coordenadas : req.body.coordenadas
+   //foto : tiempo+image.name,
   }
 
   //console.log(new_contacto);
 
-  image.mv(path,(error)=>{
+  /* image.mv(path,(error)=>{
     if (error){ 
       console.log(error);
       return;
     }
-  });
+  }); */
   
   const result = await ContactosModel.alta(new_contacto);
   res.end(JSON.stringify({ok_res: true}));

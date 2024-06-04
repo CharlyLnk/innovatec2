@@ -7,7 +7,6 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- Estilos de Bootstrap con tema Cyborg de Bootswatch -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/cyborg/bootstrap.min.css">
-  <script src="/public/js/lib.js"></script>
 </head>
 <body>
   <div class="container">
@@ -19,19 +18,19 @@
         <button class="btn btn-danger mb-3" onclick=logout()>Cerrar sesión</button>        
 
         <% if (Array.isArray(datos)) { %>
-          <% datos.forEach(function(contacto, index) { %>
+          <% datos.forEach(function(predios, index) { %>
             <% if (index % 3 === 0) { %>
               <div class="row">
             <% } %>
 
             <div class="col-md-4 mb-3">
               <div class="card">
-                <img src="http://localhost:3000/images/<%= contacto.foto %>" class="card-img-top" alt="...">
+                <img src="http://localhost:3000/images/<%= predios.foto %>" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title"><%= contacto.nombre %> <%= contacto.apellido_paterno %> <%= contacto.apellido_materno %></h5>
-                  <p class="card-text">Teléfono: <%= contacto.telefono %></p>
-                  <p class="card-text">Email: <%= contacto.email %></p>
-                  <p class="card-text">Fecha de Nacimiento: <%= contacto.fecha_nacimiento.getDate() %>/<%= contacto.fecha_nacimiento.getMonth() + 1 %>/<%= contacto.fecha_nacimiento.getFullYear() %></p>
+                  <h5 class="card-title"><%= predios.nombre %> <%= predios.apellido_paterno %> <%= predios.apellido_materno %></h5>
+                  <p class="card-text">Teléfono: <%= predios.telefono %></p>
+                  <p class="card-text">Email: <%= predios.email %></p>
+                  <p class="card-text">Fecha de Nacimiento: <%= predios.fecha_nacimiento.getDate() %>/<%= predios.fecha_nacimiento.getMonth() + 1 %>/<%= predios.fecha_nacimiento.getFullYear() %></p>
                   <button class="btn btn-warning" onclick="show_editar(this);">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                       <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
@@ -54,5 +53,109 @@
       </div>
     </div>
   </div>
+
+
+<!-- Modal start -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Alta de contacto</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form>
+        <div class="row">
+          <!--  -->
+          <div class="col-4">
+            <label for="numero_usuario" class="form-label">Numero del usuario</label>
+            <input type="text" class="form-control" id="numero_usuario" required>
+          </div>
+          <div class="col-4">
+            <label for="nombre_predio" class="form-label">Nombre del predio</label>
+            <input type="text" class="form-control" id="nombre_predio" required>
+          </div>
+          <div class="col-4">
+            <label for="nombre_propietario" class="form-label">Nombre del propietario</label>
+            <input type="text" class="form-control" id="nombre_propietario" required>            
+          </div>
+          <div class="col-4">
+            <label for="tipo_cultivo" class="form-label">Tipo de cultivo</label>
+            <input type="text" class="form-control" id="tipo_cultivo" required>              
+          </div>         
+          <!--  -->
+          <div class="col-4">
+            <label for="e-cuerpos_agua" class="form-label">Cuerpos de agua</label>
+            <input type="text" class="form-control" id="cuerpos_agua" required>
+          </div>
+          <div class="col-4">
+            <label for="natural_artificial" class="form-label">Natural o artificial</label>
+            <input type="text" class="form-control" id="natural_artificial" required>            
+          </div>
+          <div class="col-4">
+            <label for="direccion" class="form-label">Direccion</label>
+            <input type="text" class="form-control" id="direccion" required>              
+          </div>
+          <div class="col-4">
+            <label for="ciudad" class="form-label">Ciudad</label>
+            <input type="text" class="form-control" id="ciudad" required>              
+          </div>
+          <div class="col-4">
+            <label for="estado" class="form-label">Estado</label>
+            <input type="text" class="form-control" id="estado" required>              
+          </div>
+          <div class="col-4">
+            <label for="pais" class="form-label">Pais</label>
+            <input type="text" class="form-control" id="pais" required>              
+          </div>
+          <div class="col-4">
+            <label for="tam_predio" class="form-label">Tamaño del predio</label>
+            <input type="text" class="form-control" id="tam_predio" required>              
+          </div>
+          <div class="col-4">
+            <label for="tipo_riego" class="form-label">Tipo de riego</label>
+            <input type="text" class="form-control" id="tipo_riego" required>              
+          </div>
+          <div class="col-4">
+            <label for="tipo_suelo" class="form-label">Tipo de suelo</label>
+            <input type="text" class="form-control" id="tipo_suelo" required>              
+          </div>
+          <div class="col-4">
+            <label for="coordenadas" class="form-label">Coordenadas</label>
+            <input type="text" class="form-control" id="coordenadas" required>              
+          </div>
+          <div class="col-4">
+            <label for="imagen" class="form-label">imagen</label>
+            <input type="text" class="form-control" id="imagen" required>              
+          </div>
+          <!--  -->
+
+          <!-- <div class="col-8">
+            <label for="imagen" class="form-label">Fotografía</label>
+            <input accept=".jpg, .png" type="file" class="form-control" id="imagen" required>              
+          </div>
+ -->
+
+          <div class="col-4">
+          </div>
+          <!--  -->
+
+        </div>
+      </form>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" onclick="envia();">Guardar contacto</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal ends -->
+
+    <!-- archivos de boostrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib.js"></script>
 </body>
 </html>
