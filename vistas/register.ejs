@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registrar</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/cyborg/bootstrap.min.css"> <!-- Tema Cyborg de Bootswatch -->
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <!-- Cambiado a "navbar-dark bg-dark" -->
     <a class="navbar-brand" href="/">Empresa</a> <!-- Cambiado a "/" -->
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav ml-auto">
@@ -19,7 +20,7 @@
   </nav>
   <div class="container mt-5">
     <h1 class="text-center">Registrar</h1>
-    <form id="register-form" method="POST" action="/register">
+    <form id="register-form" method="POST" action="/register" class="bg-secondary p-4 rounded"> <!-- Añadido "class='bg-secondary p-4 rounded'" -->
       <div class="form-group">
         <label for="username">Nombre de Usuario</label>
         <input type="text" class="form-control" id="username" name="username" placeholder="Ingrese su nombre de usuario">
