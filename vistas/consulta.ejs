@@ -1,204 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- <script src="lib.js"></script> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-              <h1>Agenda Telefonica</h1>
-              <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" >Agregar contacto</button>
-              <button class="btn btn-close mb-3" onclick="logout()">Cerrar sesión</button>
-              <table class="table table-success table-striped">
-                  <tr>
-                      <th>Nombre</th>
-                      <th>Apellido paterno</th>
-                      <th>Apellido materno</th>
-                      <th>Correo electrónico</th>
-                      <th>Teléfono</th>
-                      <th>Fecha de nacimiento</th>
-                      <th>Foto</th>
-                      <th>Acciones</th>
-                  </tr>
-                  
-                  <% if (Array.isArray(datos)) { %>
-                    <% datos.forEach(function(contacto) { %>
-                        <tr pos="<%= contacto.id_contacto %>">
-                            <td><%= contacto.nombre %></td>
-                            <td><%= contacto.apellido_paterno %></td>
-                            <td><%= contacto.apellido_materno %></td>
-                            <td><%= contacto.telefono %></td>
-                            <td><%= contacto.email %></td>
-                            <td>
-                                <%= contacto.fecha_nacimiento.getDate() %>/
-                                <%= contacto.fecha_nacimiento.getMonth() + 1 %>/ <!-- Month is zero-based -->
-                                <%= contacto.fecha_nacimiento.getFullYear() %>
-                            </td>
-                            <!-- <td><%= contacto.foto %></td> -->
-                            <td><img nom="<%= contacto.foto %>" src="http://localhost:3000/images/<%= contacto.foto %>" alt="foto" width="100" height="200"></td>
-                            <td>
-                                <button class="btn btn-warning" onclick="show_editar(this);">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
-                                    </svg>
-                                </button>
-                                <button class="btn btn-danger" onclick="eliminar(this);">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                                    </svg>
-                                </button>
-                            </td>
-                        </tr>
-                    <% }) %>
-                <% } else { %>
-                    <tr>
-                        <td colspan="8">No hay datos disponibles.</td>
-                    </tr>
-                <% } %>
-                
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>Agenda Telefónica</h1>
+        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar contacto</button>
+        <button class="btn btn-close mb-3" onclick="logout()">Cerrar sesión</button>
 
+        <% if (Array.isArray(datos)) { %>
+          <% datos.forEach(function(contacto, index) { %>
+            <% if (index % 3 === 0) { %>
+              <div class="row">
+            <% } %>
 
-              </table>
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <img src="http://localhost:3000/images/<%= contacto.foto %>" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title"><%= contacto.nombre %> <%= contacto.apellido_paterno %> <%= contacto.apellido_materno %></h5>
+                  <p class="card-text">Teléfono: <%= contacto.telefono %></p>
+                  <p class="card-text">Email: <%= contacto.email %></p>
+                  <p class="card-text">Fecha de Nacimiento: <%= contacto.fecha_nacimiento.getDate() %>/<%= contacto.fecha_nacimiento.getMonth() + 1 %>/<%= contacto.fecha_nacimiento.getFullYear() %></p>
+                  <button class="btn btn-warning" onclick="show_editar(this);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                      <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+                    </svg>
+                  </button>
+                  <button class="btn btn-danger" onclick="eliminar(this);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
 
-            </div> <!-- columna-->
-        </div> <!-- renglob-->
-    </div> <!-- Contenedor-->
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Alta de contacto</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <form>
-        <div class="row">
-          <!--  -->
-          <div class="col-4">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre" required>
-          </div>
-          <div class="col-4">
-            <label for="ap_pat" class="form-label">Apellido paterno</label>
-            <input type="text" class="form-control" id="ap_pat" required>            
-          </div>
-          <div class="col-4">
-            <label for="ap_mat" class="form-label">Apellido materno</label>
-            <input type="text" class="form-control" id="ap_mat" required>              
-          </div>         
-          <!--  -->
-          <div class="col-4">
-            <label for="e-mail" class="form-label">Correo electrónico</label>
-            <input type="text" class="form-control" id="e_mail" required>
-          </div>
-          <div class="col-4">
-            <label for="fnac" class="form-label">Fecha nacimiento</label>
-            <input type="date" class="form-control" id="fnac" required>            
-          </div>
-          <div class="col-4">
-            <label for="telefono" class="form-label">Teléfono</label>
-            <input type="text" class="form-control" id="telefono" required>              
-          </div>
-          <!--  -->
-          <div class="col-8">
-            <label for="modal-footer" class="form-label">Fotografía</label>
-            <input accept=".jpg, .png" type="file" class="form-control" id="foto" required>              
-          </div>
-
-          <div class="col-4">
-          </div>
-          <!--  -->
-
-        </div>
-      </form>  
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" onclick="envia();">Guardar contacto</button>
+            <% if ((index + 1) % 3 === 0 || index === datos.length - 1) { %>
+              </div>
+            <% } %>
+          <% }) %>
+        <% } %>
       </div>
     </div>
   </div>
-</div>
-
-
-<!-- Modal Insercion contacto-->
-<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel2">Actualizar datos</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <form>
-        <div class="row">
-          <!--  -->
-          <div class="col-4">
-            <label for="nombre2" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre2" required>
-          </div>
-          <div class="col-4">
-            <label for="ap_pat2" class="form-label">Apellido paterno</label>
-            <input type="text" class="form-control" id="ap_pat2" required>            
-          </div>
-          <div class="col-4">
-            <label for="ap_mat2" class="form-label">Apellido materno</label>
-            <input type="text" class="form-control" id="ap_mat2" required>              
-          </div>         
-          <!--  -->
-          <div class="col-4">
-            <label for="e-mail2" class="form-label">Correo electrónico</label>
-            <input type="text" class="form-control" id="e_mail2" required>
-          </div>
-          <div class="col-4">
-            <label for="fnac2" class="form-label">Fecha nacimiento</label>
-            <input type="date" class="form-control" id="fnac2" required>            
-          </div>
-          <div class="col-4">
-            <label for="telefono2" class="form-label">Teléfono</label>
-            <input type="text" class="form-control" id="telefono2" required>              
-          </div>
-          <!--  -->
-          <div class="col-8">
-            <label for="foto2" class="form-label">Fotografía</label>
-            <input accept=".jpg, .png" type="file" class="form-control" id="foto2" required>              
-          </div>
-
-          <div class="col-4" >
-            <img class="pt-4 " id='imagen' src="" alt="foto" height="65" width="65">
-            <input type="hidden" id="nom_foto">
-            <input type="hidden" id="contacto_id">
-          </div>
-          <!--  -->
-
-        </div>
-      </form>  
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" onclick="modifica();">Actualizar contacto</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-    <!-- archivos de boostrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib.js"></script>
-  </body>
+</body>
 </html>
-
-
