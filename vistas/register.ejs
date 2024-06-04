@@ -36,13 +36,13 @@
         <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirme su contraseña">
       </div>
       <button type="submit" class="btn btn-primary">Registrarse</button>
-      <a href="/" class="btn btn-secondary">Regresar a Inicio</a>  </form>
+      <a href="/" class="btn btn-secondary">Regresar a Inicio</a>
+    </form>
   </div>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
-    // Add validation and form submission logic here
     const registerForm = document.getElementById('register-form');
     registerForm.addEventListener('submit', async (event) => {
       event.preventDefault(); // Prevent default form submission
@@ -74,6 +74,7 @@
       if (data.ok) {
         alert('Usuario registrado exitosamente');
         // Redirect to login page or other success page
+        window.location.href = '/login';
       } else {
         alert('Error al registrar usuario: ' + data.error);
       }
