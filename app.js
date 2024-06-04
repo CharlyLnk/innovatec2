@@ -9,6 +9,8 @@ const PUERTO = 3000;
 
 app.use(fileUpload()); //  Para subir archivos
 
+app.use(express.json()); // Para permitir JSON
+
 app.set('view engine','ejs');
 
 app.set("views",__dirname+'/vistas').renderFile;
@@ -39,7 +41,7 @@ app.get('/register', (req, res) => {
 // Handle user registration
 app.post('/register', async (req, res) => {
   const { username, password } = req.body;
-
+  console.log({ username, password });
   try {
     // Validation (optional)
     if (!username || !password) {
@@ -51,6 +53,7 @@ app.post('/register', async (req, res) => {
     const newUser = { usuario: username, clave: password }; // Assuming data structure
     const result = await ContactosModel.register(newUser); // Assuming a register function in ContactosModel
 
+    console.log(result);
     if (result.success) {
       // Store username in session (optional)
       req.session.usuario = username;

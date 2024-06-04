@@ -33,6 +33,18 @@ async function alta(datos){
   return query;
 }
 
+async function registrarUsuario(datos){
+  let datos2 = [datos.usuario, datos.clave];
+  let query = db
+  .promise()
+  .query('INSERT INTO usuarios (usuario, clave) VALUES (?,?)',datos2)
+  .then(()=>{
+    console.log('datos insertados')
+  })
+  .catch(e => console.log(e));
+  return query;
+}
+
 async function modi(datos, id){
     //let datos2 = [datos.nombre, datos.ap_pat, datos.ap_mat, datos.email, datos.tel, datos.fnac, datos.foto];
     console.log(datos)
@@ -66,5 +78,6 @@ module.exports = {
     baja: baja,
     alta: alta,
     modi: modi,
-    login: login
+    login: login,
+    register: registrarUsuario
 }
