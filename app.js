@@ -141,10 +141,11 @@ debugger
   }
 });
 
-app.get('/logout', (req, res)=>{
-  req.session.destroy()
-  req.render('login')
+app.get('/logout', (req, res) => {
+  req.session.destroy(); // Destroy the user session
+  res.redirect('/login'); // Redirect to the login page
 });
+
 
 app.post('/actualiza', async (req, res)=>{
   console.log(req.files);

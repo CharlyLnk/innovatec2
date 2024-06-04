@@ -7,6 +7,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- Estilos de Bootstrap con tema Cyborg de Bootswatch -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/cyborg/bootstrap.min.css">
+  <script src="/public/js/lib.js"></script>
 </head>
 <body>
   <div class="container">
@@ -15,7 +16,7 @@
         <h1>Predios Registrados</h1>
         <!-- Botón de Cerrar Sesión -->
         <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Nuevo Predio</button>
-        <button class="btn btn-danger mb-3" onclick="logout()">Cerrar sesión</button>
+        <button class="btn btn-danger mb-3" onclick=logout()>Cerrar sesión</button>        
 
         <% if (Array.isArray(datos)) { %>
           <% datos.forEach(function(contacto, index) { %>

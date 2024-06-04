@@ -189,7 +189,8 @@ async function login(){
   }
 }
 
-function logout(){
+function logout() {
   alert('logout');
-  location.href('http://localhost:3000/logout')
-};
+  window.location.href = 'http://localhost:3000/logout';
+}
+
