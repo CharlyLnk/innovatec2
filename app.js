@@ -23,10 +23,19 @@ app.use(session({
   saveUninitialized: true
 }))
 
+
+
+
 app.get('/', function (req, res){
-    res.render('login');
+    res.render('home');
+});
+app.get('/register', function (req, res){
+  res.render('register'); // Render the register.ejs view
 });
 
+app.get('/login', function (req, res){
+  res.render('login'); // Render the login.ejs view
+});
 app.get('/consulta',async (req, res) =>{
 
   if(!req.session.usuario){
