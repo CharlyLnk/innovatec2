@@ -123,50 +123,46 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybVuL5ZLVxB8AK6A5lT77VhCj/8iTuJoCOv+1mgPxhU9K/ScQsAP7HUi+ZB1X3l4" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!--/////////////////////////////////////////////////////////////////////  -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script>
-    const registerForm = document.getElementById('register-form');
-    registerForm.addEventListener('submit', async (event) => {
-      event.preventDefault(); // Prevent default form submission
+    <script>
+        const registerForm = document.getElementById('register-form');
+        registerForm.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent default form submission
 
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-      const confirmPassword = document.getElementById('confirmPassword').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
 
-      // Basic validation (can be improved)
-      if (username === '' || password === '' || confirmPassword === '') {
-        alert('Por favor complete todos los campos');
-        return;
-      }
+            // Basic validation (can be improved)
+            if (username === '' || password === '' || confirmPassword === '') {
+                alert('Por favor complete todos los campos');
+                return;
+            }
 
-      if (password !== confirmPassword) {
-        alert('Las contraseñas no coinciden');
-        return;
-      }
+            if (password !== confirmPassword) {
+                alert('Las contraseñas no coinciden');
+                return;
+            }
 
-      console.log({username, password});
+            console.log({username, password});
 
-      // Replace with actual logic to send data to server (e.g., fetch API)
-      const response = await fetch('/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }) // Assuming server expects JSON
-      });
+            // Replace with actual logic to send data to server (e.g., fetch API)
+            const response = await fetch('/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password }) // Assuming server expects JSON
+            });
 
-      const data = await response.json();
+            const data = await response.json();
 
-      if (data.ok) {
-        alert('Usuario registrado exitosamente');
-        // Redirect to login page or other success page
-        window.location.href = '/login';
-      } else {
-        alert('Error al registrar usuario: ' + data.error);
-      }
-    });
-  </script>
+            if (data.success) {
+                alert('Usuario registrado exitosamente');
+                // Redirige al usuario a la página de inicio de sesión
+                window.location.href = '/login';
+            } else {
+                alert('Error al registrar usuario: ' + data.error);
+            }
+        });
+    </script>
 </body>
-</html>
 
+</html>

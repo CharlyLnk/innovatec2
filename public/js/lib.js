@@ -245,4 +245,50 @@ function logout() {
   alert('logout');
   window.location.href = 'http://localhost:3000/logout';
 }
+// Función para registrar un nuevo usuario
+async function registrarUsuario() {
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+
+  // Validar que todos los campos estén completos
+  if (username === '' || password === '' || confirmPassword === '') {
+      alert('Por favor complete todos los campos');
+      return;
+  }
+
+  // Validar que las contraseñas coincidan
+  if (password !== confirmPassword) {
+      alert('Las contraseñas no coinciden');
+      return;
+  }
+
+  // Enviar datos al servidor para el registro
+  try {
+      const response = await fetch('/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+          alert('Usuario registrado exitosamente');
+          // Redirigir al usuario a la página de inicio de sesión
+          window.location.href = '/login';
+      } else {
+          alert('Error al registrar usuario: ' + data.error);
+      }
+  } catch (error) {
+      console.error('Error:', error);
+      alert('Hubo un error en la comunicación con el servidor');
+  }
+}
+
+// Agrega un event listener al formulario de registro para llamar a la función registrarUsuario
+document.getElementById('register-form').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevenir el envío del formulario por defecto
+  registrarUsuario(); // Llamar a la función para registrar el usuario
+});
 

@@ -35,17 +35,18 @@ async function alta(datos){
   return query;
 }
 
-async function registrarUsuario(datos){
-  let datos2 = [datos.usuario, datos.clave];
-  let query = db
-  .promise()
-  .query('INSERT INTO usuarios (usuario, clave) VALUES (?,?)',datos2)
-  .then(()=>{
-    console.log('datos insertados')
-  })
-  .catch(e => console.log(e));
-  return query;
+async function registrarUsuario(datos) {
+  try {
+    let datos2 = [datos.usuario, datos.clave];
+    await db.promise().query('INSERT INTO usuarios (usuario, clave) VALUES (?,?)', datos2);
+    console.log('Datos insertados');
+    return { success: true }; // Indica que la inserción fue exitosa
+  } catch (error) {
+    console.error('Error al insertar datos:', error);
+    throw error; // Lanza el error para que la función que llama pueda manejarlo
+  }
 }
+
 
 async function modi(datos, id){
     //let datos2 = [datos.nombre, datos.ap_pat, datos.ap_mat, datos.email, datos.tel, datos.fnac, datos.foto];
