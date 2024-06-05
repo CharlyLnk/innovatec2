@@ -22,10 +22,10 @@ async function baja(id){
 }
 
 async function alta(datos){
-  let datos2 = [datos.numero_predio, datos.numero_usuario, datos.nombre_predio, datos.nombre_propietario, datos.tipo_cultivo, datos.cuerpos_agua, datos.natural_artificial, datos.direccion, datos.ciudad, datos.estado, datos.pais, datos.tam_predio, datos.tipo_riego, datos.tipo_suelo, datos.coordenadas, datos.imagen];
+  let datos2 = [datos.numero_predio, datos.numero_usuario, datos.nombre_predio, datos.nombre_propietario, datos.tipo_cultivo, datos.cuerpos_agua, datos.tipo_cuerpo_agua, datos.direccion, datos.ciudad, datos.estado, datos.pais, datos.tam_predio, datos.tipo_riego, datos.tipo_suelo, datos.coordenadas, datos.imagen];
   let query = db
   .promise()
-  .query('INSERT INTO predios (numero_predio, numero_usuario, nombre_predio, nombre_propietario, tipo_cultivo, cuerpos_agua, natural_artificial, direccion, ciudad, estado, pais, tam_predio, tipo_riego, tipo_suelo, coordenadas, imagen) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',datos2)
+  .query('INSERT INTO predios (numero_predio, numero_usuario, nombre_predio, nombre_propietario, tipo_cultivo, cuerpos_agua, tipo_cuerpo_agua, direccion, ciudad, estado, pais, tam_predio, tipo_riego, tipo_suelo, coordenadas, imagen) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',datos2)
   .then(()=>{
     console.log('datos insertados')
   })

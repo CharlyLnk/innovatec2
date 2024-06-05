@@ -106,7 +106,7 @@ app.post('/datos', async (req, res)=>{
     nombre_propietario : req.body.nombre_propietario,
     tipo_cultivo : req.body.tipo_cultivo,
     cuerpos_agua : req.body.cuerpos_agua,
-    natural_artificial : req.body.natural_artificial,
+    tipo_cuerpo_agua : req.body.tipo_cuerpo_agua,
     direccion : req.body.direccion,
     ciudad : req.body.ciudad,
     estado : req.body.estado,

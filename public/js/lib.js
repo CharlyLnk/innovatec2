@@ -43,6 +43,12 @@ async function envia(){
   let coordenadas = document.getElementById('coordenadas').value;
   let imagen = document.getElementById('imagen').value;
 
+  // Validar que el campo tipo_cuerpo_agua no esté vacío
+  if (cuerpos_agua === 'si' && !tipo_cuerpo_agua) {
+    alert('Debe seleccionar un tipo de cuerpo de agua.');
+    return;
+  }
+
   const formData = new FormData();
   formData.append('imagen', imagen);
   formData.append('nombre_predio', nombre_predio);
@@ -78,6 +84,7 @@ async function envia(){
     alert('Hubo un error en la comunicación con el servidor');
   }
 }
+
 
 //--------------------------------------------------------------------
 
