@@ -93,9 +93,11 @@ app.post('/baja', (req, res)=>{
 
 app.post('/datos', async (req, res)=>{
   console.log(req.files);
-  //const image = req.files.foto;
-  //const tiempo = Date.now();
-  //const path = __dirname+'/images/'+tiempo+image.name;
+
+  const image = req.files.imagen;
+  const tiempo = Date.now();
+  const path = __dirname+'/images/'+tiempo+image.name;
+
   const numero_usuario = req.session.numero_usuario;
   const new_contacto = {
     nombre_predio : req.body.nombre_predio,
@@ -111,18 +113,18 @@ app.post('/datos', async (req, res)=>{
     tam_predio : req.body.tam_predio,
     tipo_riego : req.body.tipo_riego,
     tipo_suelo : req.body.tipo_suelo,
-    coordenadas : req.body.coordenadas
-   //foto : tiempo+image.name,
+    coordenadas : req.body.coordenadas,
+    imagen : tiempo+image.name,
   }
 
   //console.log(new_contacto);
 
-  /* image.mv(path,(error)=>{
+  image.mv(path,(error)=>{
     if (error){ 
       console.log(error);
       return;
     }
-  }); */
+  });
   
   const result = await ContactosModel.alta(new_contacto);
   res.end(JSON.stringify({ok_res: true}));
@@ -161,13 +163,13 @@ app.post('/actualiza', async (req, res) => {
   console.log('---------'+req.body.id+'-------');
   
   // Comprobamos si se envió una imagen
-  let titulo_foto = '';
+  let titulo_imagen = '';
   if (req.files !== null) {
-    const image = req.files.foto;
+    const image = req.files.imagen;
     console.log('----------'+image.name+'------------');
     const tiempo = Date.now();
     const path = __dirname + '/images/' + tiempo + image.name;
-    titulo_foto = tiempo + image.name;
+    titulo_imagen = tiempo + image.name;
     // Movemos la imagen al directorio de imágenes
     await image.mv(path, (error) => {
       if (error) {
@@ -176,9 +178,9 @@ app.post('/actualiza', async (req, res) => {
       }
     });
   } else {
-    console.log('No se envió foto');
-    console.log(req.body.foto);
-    titulo_foto = req.body.foto;
+    console.log('No se envió imagen');
+    console.log(req.body.imagen);
+    titulo_imagen = req.body.imagen;
   }
 
   const id = req.body.numero_predio; // Ajustado según el HTML proporcionado
@@ -198,7 +200,7 @@ app.post('/actualiza', async (req, res) => {
     tipo_riego: req.body.tipo_riego,
     tipo_suelo: req.body.tipo_suelo,
     coordenadas: req.body.coordenadas,
-    foto: titulo_foto
+    imagen: titulo_imagen
   };
 
   try {

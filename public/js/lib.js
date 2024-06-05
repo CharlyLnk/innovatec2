@@ -26,11 +26,10 @@ async function eliminar(nodo){
 //Funcion que envia datos al servidor, para insertar un nuevo contacto 
 async function envia(){
   alert('Se van a enviar los datos');
-
- 
+  let imagen = document.getElementById('imagen');
 
   let nombre_predio = document.getElementById('nombre_predio').value;
-  let numero_usuario = document.getElementById('numero_usuario').value;
+  //let numero_usuario = document.getElementById('numero_usuario').value;
   let nombre_propietario = document.getElementById('nombre_propietario').value;
   let tipo_cultivo = document.getElementById('tipo_cultivo').value;
   let cuerpos_agua = document.getElementById('cuerpos_agua').value;
@@ -43,7 +42,11 @@ async function envia(){
   let tipo_riego = document.getElementById('tipo_riego').value;
   let tipo_suelo = document.getElementById('tipo_suelo').value;
   let coordenadas = document.getElementById('coordenadas').value;
-  let imagen = document.getElementById('imagen').value;
+
+  if (imagen.value == ''){
+    alert('Debe seleccionar un archivo');
+    return
+  }
 
   // Validar que el campo tipo_cuerpo_agua no esté vacío
   if (cuerpos_agua === 'Si' && !tipo_cuerpo_agua) {
@@ -52,9 +55,10 @@ async function envia(){
   }
 
   const formData = new FormData();
+  formData.append('imagen',imagen.files[0]);
   formData.append('imagen', imagen);
   formData.append('nombre_predio', nombre_predio);
-  formData.append('numero_usuario', numero_usuario);
+  //formData.append('numero_usuario', numero_usuario);
   formData.append('nombre_propietario', nombre_propietario);
   formData.append('tipo_cultivo', tipo_cultivo);
   formData.append('cuerpos_agua', cuerpos_agua);
@@ -95,11 +99,9 @@ async function modifica(){
   alert('Se van a enviar los datos');
 
   let numero_predio = document.getElementById('numero_predio2').value; // Cambiado el id a 'numero_predio' según el HTML proporcionado
-  // var fotox = document.getElementById('foto2'); // Comentado porque no parece estar relacionado con la lógica de esta función
-
+  let imagenx = document.getElementById('imagen2');
   let nombre_predio = document.getElementById('nombre_predio2').value; // Ajustado a 'nombre_predio' según el HTML proporcionado
   let nombre_propietario = document.getElementById('nombre_propietario2').value; // Ajustado a 'nombre_propietario' según el HTML proporcionado
-  // Los siguientes campos deben ser ajustados de manera similar según los IDs en el HTML proporcionado
   let tipo_cultivo = document.getElementById('tipo_cultivo2').value;
   let cuerpos_agua = document.getElementById('cuerpos_agua2').value;
   let tipo_cuerpo_agua = document.getElementById('tipo_cuerpo_agua2').value;
@@ -111,14 +113,21 @@ async function modifica(){
   let tipo_riego = document.getElementById('tipo_riego2').value;
   let tipo_suelo = document.getElementById('tipo_suelo2').value;
   let coordenadas = document.getElementById('coordenadas2').value;
+  let nombre_imagen=''
+  nombre_imagen = document.getElementById('nom_imagen').value;
 
-  // Comentado porque parece no estar relacionado con la lógica de esta función
-  // nombre_foto = document.getElementById('nom_foto').value;
+  if (imagenx.value == ''){
+    alert('Debe seleccionar un archivo');
+    return
+ }
+
   
   const formData = new FormData()
-  // formData.append('foto',fotox.files[0]); // Comentado porque no parece estar relacionado con la lógica de esta función
+  
+  formData.append('imagen',imagenx.files[0]); // Comentado porque no parece estar relacionado con la lógica de esta función
+  
   formData.append('numero_predio',numero_predio); // Ajustado a 'id_predio' según el HTML proporcionado
-  // formData.append('foto',nombre_foto); // Comentado porque no parece estar relacionado con la lógica de esta función
+  formData.append('imagen',nombre_imagen); // Comentado porque no parece estar relacionado con la lógica de esta función
   formData.append('nombre_predio',nombre_predio);
   formData.append('nombre_propietario',nombre_propietario);
   // Los siguientes campos deben ser ajustados de manera similar según los nombres que deseas usar en el servidor
@@ -200,20 +209,20 @@ function show_editar(nodo){
   if (fecha[0].length ==1 ){
     newFecha = newFecha+'-0'+fecha[0]
   }else{
-    newFecha = newFecha+'-'+fecha[0]
-  }
+    newFecha = newFecha+'-'+fecha[0] 
+  }*/
 
-  $('#fnac2').val(newFecha); */
+  //$('#fnac2').val(newFecha);
 
-  //$('#imagen').attr('src',fila.cells[6].firstChild.getAttribute('src'));
-  //$('#nom_foto').attr('value',fila.cells[6].firstChild.getAttribute('nom'));
+  $('#imagen').attr('src',fila.cells[16].firstChild.getAttribute('src'));
+  $('#nom_imagen').attr('value',fila.cells[16].firstChild.getAttribute('nom'));
 
 
   $('#exampleModal2').modal('show'); 
 
- /*  $("#foto2").change(function() { //Cuando el input cambie (se cargue un nuevo archivo) se va a ejecutar de nuevo el cambio de imagen y se verá reflejado.
+  $("#imagen2").change(function() { //Cuando el input cambie (se cargue un nuevo archivo) se va a ejecutar de nuevo el cambio de imagen y se verá reflejado.
     readURL(this);
-  }); */
+  });
 
 }
 //--------------------------------------------------------
