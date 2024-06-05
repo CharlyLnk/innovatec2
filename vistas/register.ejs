@@ -13,57 +13,46 @@
             background-position: center;
             color: #fff;
         }
-
         .navbar {
             background: rgba(0, 0, 0, 0.8);
         }
-
         .card {
             background-color: rgba(42, 42, 42, 0.9);
             border: none;
         }
-
         .form-control {
             background-color: #3a3a3a;
             color: #fff;
             border-color: #555;
         }
-
         .form-control:focus {
             background-color: #3a3a3a;
             color: #fff;
             border-color: #777;
             box-shadow: none;
         }
-
         .btn-primary {
             background-color: #007bff;
             border-color: #007bff;
         }
-
         .btn-primary:hover {
             background-color: #0056b3;
             border-color: #004085;
         }
-
         .btn-secondary {
             background-color: #6c757d;
             border-color: #6c757d;
         }
-
         .btn-secondary:hover {
             background-color: #5a6268;
             border-color: #545b62;
         }
-
         .rounded-circle {
             border: 2px solid #fff;
         }
-
         .text-shadow {
             text-shadow: 1px 1px 2px #000;
         }
-
         .card-header {
             background-color: rgba(0, 0, 0, 0.6);
         }
@@ -122,47 +111,7 @@
     <!-- Archivos de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybVuL5ZLVxB8AK6A5lT77VhCj/8iTuJoCOv+1mgPxhU9K/ScQsAP7HUi+ZB1X3l4" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        const registerForm = document.getElementById('register-form');
-        registerForm.addEventListener('submit', async (event) => {
-            event.preventDefault(); // Prevent default form submission
-
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-
-            // Basic validation (can be improved)
-            if (username === '' || password === '' || confirmPassword === '') {
-                alert('Por favor complete todos los campos');
-                return;
-            }
-
-            if (password !== confirmPassword) {
-                alert('Las contraseñas no coinciden');
-                return;
-            }
-
-            console.log({username, password});
-
-            // Replace with actual logic to send data to server (e.g., fetch API)
-            const response = await fetch('/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password }) // Assuming server expects JSON
-            });
-
-            const data = await response.json();
-
-            if (data.success) {
-                alert('Usuario registrado exitosamente');
-                // Redirige al usuario a la página de inicio de sesión
-                window.location.href = '/login';
-            } else {
-                alert('Error al registrar usuario: ' + data.error);
-            }
-        });
-    </script>
+    <script src="/js/lib.js"></script>
 </body>
 
 </html>

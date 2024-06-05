@@ -245,6 +245,11 @@ function logout() {
   alert('logout');
   window.location.href = 'http://localhost:3000/logout';
 }
+
+
+
+// Función para registrar un nuevo usuario
+// Función para registrar un nuevo usuario
 // Función para registrar un nuevo usuario
 async function registrarUsuario() {
   const username = document.getElementById('username').value;
@@ -291,4 +296,3 @@ document.getElementById('register-form').addEventListener('submit', function(eve
   event.preventDefault(); // Prevenir el envío del formulario por defecto
   registrarUsuario(); // Llamar a la función para registrar el usuario
 });
-

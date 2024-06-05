@@ -35,6 +35,8 @@ async function alta(datos){
   return query;
 }
 
+
+
 async function registrarUsuario(datos) {
   try {
     let datos2 = [datos.usuario, datos.clave];
@@ -43,9 +45,13 @@ async function registrarUsuario(datos) {
     return { success: true }; // Indica que la inserción fue exitosa
   } catch (error) {
     console.error('Error al insertar datos:', error);
-    throw error; // Lanza el error para que la función que llama pueda manejarlo
+    return { success: false, message: 'Error al insertar datos' }; // Devuelve un objeto de error
   }
 }
+
+module.exports = {
+  registrarUsuario
+};
 
 
 async function modi(datos, id){
@@ -82,5 +88,5 @@ module.exports = {
     alta: alta,
     modi: modi,
     login: login,
-    register: registrarUsuario
+    registrarUsuario: registrarUsuario
 }

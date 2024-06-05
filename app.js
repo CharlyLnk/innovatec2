@@ -37,38 +37,31 @@ app.get('/', function (req, res){
 app.get('/register', (req, res) => {
   res.render('register');
 });
-
-// Handle user registration
 app.post('/register', async (req, res) => {
   const { username, password } = req.body;
   console.log({ username, password });
+
   try {
-    // Validation (optional)
     if (!username || !password) {
-      res.status(400).json({ error: 'Please fill in all fields' }); // Send appropriate error response
-      return; // Prevent further processing
+      return res.status(400).json({ success: false, error: 'Por favor complete todos los campos' });
     }
 
-    // Logic to register the user in the database
-    const newUser = { usuario: username, clave: password }; // Assuming data structure
-    const result = await ContactosModel.register(newUser); // Assuming a register function in ContactosModel
+    const result = await ContactosModel.registrarUsuario({ usuario: username, clave: password });
 
-    console.log(result);
     if (result.success) {
-      // Store username in session (optional)
-      req.session.usuario = username;
-
-      // Redirect to login page after successful registration
-      res.redirect('/login');
+      // Envía una respuesta con redirección al cliente
+      res.render('login');
+      // return res.status(200).json({ success: true, redirectUrl: '/login' });
     } else {
-      // Handle registration failure (e.g., username already exists)
-      res.status(400).json({ error: result.message || 'Error al registrar usuario' });
+      res.render('register');
+      alert('Error al registrar usuario' );
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Error al registrar usuario' });
+    // return res.status(500).json({ success: false, error: 'Error al registrar usuario' });
   }
 });
+
 
 
 app.get('/login', function (req, res){
