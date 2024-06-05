@@ -92,29 +92,45 @@ async function envia(){
 async function modifica(){
   alert('Se van a enviar los datos');
 
-  let id_clave = document.getElementById('contacto_id').value;
-  var fotox = document.getElementById('foto2');
+  let numero_predio = document.getElementById('numero_predio').value; // Cambiado el id a 'numero_predio' según el HTML proporcionado
+  // var fotox = document.getElementById('foto2'); // Comentado porque no parece estar relacionado con la lógica de esta función
 
-  let nombre = document.getElementById('nombre2').value;
-  let ap_pat = document.getElementById('ap_pat2').value;
-  let ap_mat = document.getElementById('ap_mat2').value;
-  let e_mail = document.getElementById('e_mail2').value;
-  let fnac = document.getElementById('fnac2').value;
-  let telefono = document.getElementById('telefono2').value;
-  let nombre_foto=''
+  let nombre_predio = document.getElementById('nombre_predio').value; // Ajustado a 'nombre_predio' según el HTML proporcionado
+  let nombre_propietario = document.getElementById('nombre_propietario').value; // Ajustado a 'nombre_propietario' según el HTML proporcionado
+  // Los siguientes campos deben ser ajustados de manera similar según los IDs en el HTML proporcionado
+  let tipo_cultivo = document.getElementById('tipo_cultivo').value;
+  let cuerpos_agua = document.getElementById('cuerpos_agua').value;
+  let tipo_cuerpo_agua = document.getElementById('tipo_cuerpo_agua').value;
+  let direccion = document.getElementById('direccion').value;
+  let ciudad = document.getElementById('ciudad').value;
+  let estado = document.getElementById('estado').value;
+  let pais = document.getElementById('pais').value;
+  let tam_predio = document.getElementById('tam_predio').value;
+  let tipo_riego = document.getElementById('tipo_riego').value;
+  let tipo_suelo = document.getElementById('tipo_suelo').value;
+  let coordenadas = document.getElementById('coordenadas').value;
 
-  nombre_foto = document.getElementById('nom_foto').value;
+  // Comentado porque parece no estar relacionado con la lógica de esta función
+  // nombre_foto = document.getElementById('nom_foto').value;
   
   const formData = new FormData()
-  formData.append('foto',fotox.files[0]);
-  formData.append('id',id_clave);
-  formData.append('foto',nombre_foto);
-  formData.append('nom',nombre);
-  formData.append('ap_pat',ap_pat);
-  formData.append('ap_mat',ap_mat);
-  formData.append('e_mail',e_mail);
-  formData.append('fnac',fnac);
-  formData.append('telefono',telefono);
+  // formData.append('foto',fotox.files[0]); // Comentado porque no parece estar relacionado con la lógica de esta función
+  formData.append('numero_predio',numero_predio); // Ajustado a 'id_predio' según el HTML proporcionado
+  // formData.append('foto',nombre_foto); // Comentado porque no parece estar relacionado con la lógica de esta función
+  formData.append('nombre_predio',nombre_predio);
+  formData.append('nombre_propietario',nombre_propietario);
+  // Los siguientes campos deben ser ajustados de manera similar según los nombres que deseas usar en el servidor
+  formData.append('tipo_cultivo',tipo_cultivo);
+  formData.append('cuerpos_agua',cuerpos_agua);
+  formData.append('tipo_cuerpo_agua',tipo_cuerpo_agua);
+  formData.append('direccion',direccion);
+  formData.append('ciudad',ciudad);
+  formData.append('estado',estado);
+  formData.append('pais',pais);
+  formData.append('tam_predio',tam_predio);
+  formData.append('tipo_riego',tipo_riego);
+  formData.append('tipo_suelo',tipo_suelo);
+  formData.append('coordenadas',coordenadas);
 
   let respo = await fetch('http://localhost:3000/actualiza',{
     method: 'POST',
@@ -129,6 +145,7 @@ async function modifica(){
     alert('Hubo un error');
   }
 }
+
 //--------------------------------------------------------------------
 
 // Funcion para actualizar imagen en editar contacto
@@ -150,24 +167,21 @@ function show_editar(nodo){
   let id = nodo.parentNode.parentNode.getAttribute('pos');
 
   let fila = nodo.parentNode.parentNode;
-
-  $('#nombre2').val(fila.cells[0].innerHTML);
-  $('#ap_pat2').val(fila.cells[1].innerHTML);
-  $('#ap_mat2').val(fila.cells[2].innerHTML);
-  $('#e_mail2').val(fila.cells[3].innerHTML);
-  $('#e_mail2').val(fila.cells[4].innerHTML);
-  $('#e_mail2').val(fila.cells[5].innerHTML);
-  $('#e_mail2').val(fila.cells[6].innerHTML);
-  $('#e_mail2').val(fila.cells[7].innerHTML);
-  $('#e_mail2').val(fila.cells[8].innerHTML);
-  $('#e_mail2').val(fila.cells[9].innerHTML);
-  $('#e_mail2').val(fila.cells[10].innerHTML);
-  $('#e_mail2').val(fila.cells[11].innerHTML);
-  $('#e_mail2').val(fila.cells[12].innerHTML);
-  $('#e_mail2').val(fila.cells[13].innerHTML);
-  $('#e_mail2').val(fila.cells[14].innerHTML);
-  $('#e_mail2').val(fila.cells[15].innerHTML);
-  $('#contacto_id').val(id);
+  $('#numero_predio').val(id);
+  $('#nombre_predio').val(fila.cells[2].innerHTML);
+  $('#nombre_propietario').val(fila.cells[3].innerHTML);
+  $('#tipo_cultivo').val(fila.cells[4].innerHTML);
+  $('#cuerpos_agua').val(fila.cells[5].innerHTML);
+  $('#tipo_cuerpo_agua').val(fila.cells[6].innerHTML);
+  $('#direccion').val(fila.cells[7].innerHTML);
+  $('#ciudad').val(fila.cells[8].innerHTML);
+  $('#estado').val(fila.cells[9].innerHTML);
+  $('#pais').val(fila.cells[10].innerHTML);
+  $('#tam_predio').val(fila.cells[11].innerHTML);
+  $('#tipo_riego').val(fila.cells[12].innerHTML);
+  $('#tipo_suelo').val(fila.cells[13].innerHTML);
+  $('#coordenadas').val(fila.cells[14].innerHTML);
+  
 
   /* let fecha = (fila.cells[5].innerHTML).split('/');
 
@@ -187,17 +201,16 @@ function show_editar(nodo){
   }
 
   $('#fnac2').val(newFecha); */
-  
-  $('#telefono2').val(fila.cells[3].innerHTML);
-  $('#imagen').attr('src',fila.cells[6].firstChild.getAttribute('src'));
-  $('#nom_foto').attr('value',fila.cells[6].firstChild.getAttribute('nom'));
+
+  //$('#imagen').attr('src',fila.cells[6].firstChild.getAttribute('src'));
+  //$('#nom_foto').attr('value',fila.cells[6].firstChild.getAttribute('nom'));
 
 
   $('#exampleModal2').modal('show'); 
 
-  $("#foto2").change(function() { //Cuando el input cambie (se cargue un nuevo archivo) se va a ejecutar de nuevo el cambio de imagen y se verá reflejado.
+ /*  $("#foto2").change(function() { //Cuando el input cambie (se cargue un nuevo archivo) se va a ejecutar de nuevo el cambio de imagen y se verá reflejado.
     readURL(this);
-  });
+  }); */
 
 }
 //--------------------------------------------------------
