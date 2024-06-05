@@ -154,10 +154,22 @@ function show_editar(nodo){
   $('#nombre2').val(fila.cells[0].innerHTML);
   $('#ap_pat2').val(fila.cells[1].innerHTML);
   $('#ap_mat2').val(fila.cells[2].innerHTML);
+  $('#e_mail2').val(fila.cells[3].innerHTML);
   $('#e_mail2').val(fila.cells[4].innerHTML);
+  $('#e_mail2').val(fila.cells[5].innerHTML);
+  $('#e_mail2').val(fila.cells[6].innerHTML);
+  $('#e_mail2').val(fila.cells[7].innerHTML);
+  $('#e_mail2').val(fila.cells[8].innerHTML);
+  $('#e_mail2').val(fila.cells[9].innerHTML);
+  $('#e_mail2').val(fila.cells[10].innerHTML);
+  $('#e_mail2').val(fila.cells[11].innerHTML);
+  $('#e_mail2').val(fila.cells[12].innerHTML);
+  $('#e_mail2').val(fila.cells[13].innerHTML);
+  $('#e_mail2').val(fila.cells[14].innerHTML);
+  $('#e_mail2').val(fila.cells[15].innerHTML);
   $('#contacto_id').val(id);
 
-  let fecha = (fila.cells[5].innerHTML).split('/');
+  /* let fecha = (fila.cells[5].innerHTML).split('/');
 
   let newFecha=''
   newFecha = newFecha+fecha[2]
@@ -174,7 +186,8 @@ function show_editar(nodo){
     newFecha = newFecha+'-'+fecha[0]
   }
 
-  $('#fnac2').val(newFecha);
+  $('#fnac2').val(newFecha); */
+  
   $('#telefono2').val(fila.cells[3].innerHTML);
   $('#imagen').attr('src',fila.cells[6].firstChild.getAttribute('src'));
   $('#nom_foto').attr('value',fila.cells[6].firstChild.getAttribute('nom'));

@@ -13,7 +13,7 @@ async function consultar(){
 async function baja(id){
     let results = db
     .promise()
-    .query('DELETE from predios WHERE id= ?',[id],(error, result, fields)=>{
+    .query('DELETE from predios WHERE numero_predio= ?',[id],(error, result, fields)=>{
         if (error) return console.error(error.message)
     })
     .then( () => {
@@ -48,8 +48,8 @@ async function registrarUsuario(datos){
 async function modi(datos, id){
     //let datos2 = [datos.nombre, datos.ap_pat, datos.ap_mat, datos.email, datos.tel, datos.fnac, datos.foto];
     console.log(datos)
-    console.log('>>>>>>'+id+'<<<<<<')
-    const text_query = `UPDATE predios SET nombre = "${datos.nombre}", apellido_paterno = "${datos.ap_pat}", apellido_materno = "${datos.ap_mat}", email = "${datos.email}",telefono = "${datos.tel}", fecha_nacimiento = "${datos.fnac}", foto = "${datos.foto}" WHERE id = "${id}" `;
+    console.log('>>>>>>'+numero_predio+'<<<<<<')
+    const text_query = `UPDATE predios SET nombre_predio = "${datos.nombre_predio}", nombre_propietario = "${datos.nombre_propietario}", tipo_cultivo = "${datos.tipo_cultivo}", cuerpos_agua = "${datos.cuerpos_agua}",direccion = "${datos.direccion}", ciudad = "${datos.ciudad}", estado = "${datos.estado}", pais = "${datos.pais}", tam_predio = "${datos.tam_predio}", tipo_riego = "${datos.tipo_riego}", tipo_suelo = "${datos.tipo_suelo}", coordenadas = "${datos.coordenadas}", imagen = "${datos.imagen}" WHERE numero_predio = "${id}" `;
  
     console.log(text_query)
 
