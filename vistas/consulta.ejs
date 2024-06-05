@@ -84,7 +84,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Alta de contacto</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Predio</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -92,7 +92,7 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="numero_usuario" class="form-label">Número del usuario</label>
-                <input type="text" class="form-control" id="numero_usuario" required>
+                <input type="text" class="form-control" id="numero_usuario" required disabled hidden>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="nombre_predio" class="form-label">Nombre del predio</label>
@@ -110,8 +110,8 @@
                 <label for="cuerpos_agua" class="form-label">Cuerpos de agua</label>
                 <select class="form-select" id="cuerpos_agua" required onchange="handleCuerposAguaChange()">
                   <option value="">Selecciona una opción</option>
-                  <option value="si">Sí</option>
-                  <option value="no">No</option>
+                  <option value="Si">Sí</option>
+                  <option value="No">No</option>
                 </select>
               </div>
               <div class="col-md-6 mb-3">
@@ -157,14 +157,14 @@
               </div>
               <div class="col-md-6 mb-3">
                 <label for="imagen" class="form-label">Imagen</label>
-                <input type="text" class="form-control" id="imagen" required>
+                <input type="text" class="form-control" id="imagen" required disabled hidden>
               </div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary" onclick="envia();">Guardar contacto</button>
+          <button type="button" class="btn btn-primary" onclick="envia();">Guardar</button>
         </div>
       </div>
     </div>
@@ -256,7 +256,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary" onclick="modifica();">Guardar contacto</button>
+          <button type="button" class="btn btn-primary" onclick="modifica();">Guardar cambios</button>
         </div>
       </div>
     </div>
@@ -272,7 +272,7 @@
     function handleCuerposAguaChange() {
       let cuerposAgua = document.getElementById('cuerpos_agua').value;
       let tipoCuerpoAgua = document.getElementById('tipo_cuerpo_agua');
-      if (cuerposAgua === 'si') {
+      if (cuerposAgua === 'Si') {
         tipoCuerpoAgua.disabled = false;
         tipoCuerpoAgua.required = true;
         tipoCuerpoAgua.value = '';
@@ -287,7 +287,7 @@
     function handleCuerposAguaChange2() {
       let cuerposAgua2 = document.getElementById('cuerpos_agua2').value;
       let tipoCuerpoAgua2 = document.getElementById('tipo_cuerpo_agua2');
-      if (cuerposAgua2 === 'si') {
+      if (cuerposAgua2 === 'Si') {
         tipoCuerpoAgua2.disabled = false;
         tipoCuerpoAgua2.required = true;
         tipoCuerpoAgua2.value = '';
