@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/cyborg/bootstrap.min.css">
+    <style>
+        body {
+            background: url('../images/SCLN2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+        .navbar {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .card {
+            background-color: rgba(42, 42, 42, 0.9);
+            border: none;
+        }
+        .form-control {
+            background-color: #3a3a3a;
+            color: #fff;
+            border-color: #555;
+        }
+        .form-control:focus {
+            background-color: #3a3a3a;
+            color: #fff;
+            border-color: #777;
+            box-shadow: none;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+        .rounded-circle {
+            border: 2px solid #fff;
+        }
+        .text-shadow {
+            text-shadow: 1px 1px 2px #000;
+        }
+        .card-header {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">SCANLAND</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h3 class="text-uppercase text-shadow">Registrar</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="register-form" method="POST" action="/register">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Nombre de Usuario</label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Ingrese su nombre de usuario" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese su contraseña" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirme su contraseña" required>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
+                                <a href="/" class="btn btn-secondary btn-block">Regresar a Inicio</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Archivos de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybVuL5ZLVxB8AK6A5lT77VhCj/8iTuJoCOv+1mgPxhU9K/ScQsAP7HUi+ZB1X3l4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/lib.js"></script>
+</body>
+
+</html>
