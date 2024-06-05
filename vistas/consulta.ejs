@@ -184,7 +184,7 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="numero_predio2" class="form-label">Número de predio</label>
-                <input type="text" class="form-control" id="numero_predio2" required>
+                <input type="text" class="form-control" id="numero_predio2" required disabled>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="nombre_predio2" class="form-label">Nombre del predio</label>
@@ -200,7 +200,7 @@
               </div>
               <div class="col-md-6 mb-3">
                 <label for="cuerpos_agua2" class="form-label">Cuerpos de agua</label>
-                <select class="form-select" id="cuerpos_agua2" required onchange="handleCuerposAguaChange()">
+                <select class="form-select" id="cuerpos_agua2" required onchange="handleCuerposAguaChange2()">
                   <option value="">Selecciona una opción</option>
                   <option value="si">Sí</option>
                   <option value="no">No</option>
@@ -280,6 +280,21 @@
         tipoCuerpoAgua.disabled = true;
         tipoCuerpoAgua.required = false;
         tipoCuerpoAgua.value = 'No aplica';
+      }
+    }
+  </script>
+  <script>
+    function handleCuerposAguaChange2() {
+      let cuerposAgua2 = document.getElementById('cuerpos_agua2').value;
+      let tipoCuerpoAgua2 = document.getElementById('tipo_cuerpo_agua2');
+      if (cuerposAgua2 === 'si') {
+        tipoCuerpoAgua2.disabled = false;
+        tipoCuerpoAgua2.required = true;
+        tipoCuerpoAgua2.value = '';
+      } else {
+        tipoCuerpoAgua2.disabled = true;
+        tipoCuerpoAgua2.required = false;
+        tipoCuerpoAgua2.value = 'No aplica';
       }
     }
   </script>

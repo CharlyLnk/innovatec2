@@ -74,15 +74,17 @@ app.post('/register', async (req, res) => {
 app.get('/login', function (req, res){
   res.render('login'); // Render the login.ejs view
 });
+//////////////////////////////////////////////////////
 app.get('/consulta',async (req, res) =>{
-
+  const numero_usuario = req.session.numero_usuario;
   if(!req.session.usuario){
     res.render('login');
   }
-    const datos = await ContactosModel.consultar();
+    const datos = await ContactosModel.consultar(numero_usuario);
+    console.log("Consulta:",datos)
     res.render('consulta',{datos})
 });
-
+/////////////////////////////////////////////////////
 app.post('/baja', (req, res)=>{
     var body=''
     req.on('data', async(data)=>{
@@ -136,15 +138,17 @@ app.post('/login', async (req, res)=>{
 
   let usuario = req.body.usuario;
   let clave = req.body.clave;
-
-console.log(usuario)
 debugger
   
   const result = await ContactosModel.login(usuario, clave)
-
+  console.log("result = ",result);
   if (result[0]){
+    console.log("Result[0]:",result[0]);
     req.session.usuario=result[0].usuario
-    res.end(JSON.stringify({ok_res: true}));
+    req.session.numero_usuario=result[0].numero_usuario
+    console.log("=?",req.session.numero_usuario)
+    res.end(JSON.stringify({ok_res: true, numero_usuario: result[0].numero_usuario}));
+    console.log("aqui:",res.end(JSON.stringify({ok_res: true, numero_usuario: result[0].numero_usuario})))
   }else{
     res.render('login')
     

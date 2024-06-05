@@ -104,7 +104,7 @@ async function modifica(){
   let direccion = document.getElementById('direccion2').value;
   let ciudad = document.getElementById('ciudad2').value;
   let estado = document.getElementById('estado2').value;
-  let pais = document.getElementById('pais').value;
+  let pais = document.getElementById('pais2').value;
   let tam_predio = document.getElementById('tam_predio2').value;
   let tipo_riego = document.getElementById('tipo_riego2').value;
   let tipo_suelo = document.getElementById('tipo_suelo2').value;
@@ -218,9 +218,9 @@ function show_editar(nodo){
 
 async function login(){
   alert('Login');
-
   let usuario = document.getElementById('usu').value;
   let clave = document.getElementById('cve').value;
+
  // let numero_usuario = document.getElementById('numero_usuario').values;
   const formData = new FormData()
   formData.append('usuario',usuario);
@@ -233,7 +233,7 @@ async function login(){
   });
 
   let result = await respo.json();
-
+  console.log("json result:",result);
   if (result.ok_res){
     location.href = 'http://localhost:3000/consulta';
   }else{

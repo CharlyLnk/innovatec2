@@ -1,15 +1,17 @@
 const db = require('../conection');
 
-async function consultar(){
-    let results = db
-    .promise()
-    .query('SELECT * from predios')
-    .then( ([results]) => {
-        return results
-    })
-    .catch( e => console.log(e))
-    return await results;
+async function consultar(id){
+  console.log("Pato: ",id);
+  try {
+      const [results] = await db.promise().query('SELECT * FROM predios WHERE numero_usuario = ?', [id]);
+      console.log("ganzo: ",results);
+      return results;
+  } catch (error) {
+      console.error(error);
+      throw error;
+  }
 }
+
 async function baja(id){
     let results = db
     .promise()
