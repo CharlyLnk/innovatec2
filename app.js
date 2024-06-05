@@ -185,6 +185,7 @@ app.post('/actualiza', async (req, res) => {
   const id = req.body.numero_predio; // Ajustado según el HTML proporcionado
 
   const new_contacto = {
+    
     nombre_predio: req.body.nombre_predio,
     nombre_propietario: req.body.nombre_propietario,
     tipo_cultivo: req.body.tipo_cultivo,

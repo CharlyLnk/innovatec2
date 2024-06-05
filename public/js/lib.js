@@ -92,7 +92,7 @@ async function envia(){
 async function modifica(){
   alert('Se van a enviar los datos');
 
-  let numero_usuario = document.getElementById('numero_usuario2').value; // Cambiado el id a 'numero_predio' según el HTML proporcionado
+  let numero_predio = document.getElementById('numero_predio2').value; // Cambiado el id a 'numero_predio' según el HTML proporcionado
   // var fotox = document.getElementById('foto2'); // Comentado porque no parece estar relacionado con la lógica de esta función
 
   let nombre_predio = document.getElementById('nombre_predio2').value; // Ajustado a 'nombre_predio' según el HTML proporcionado
@@ -115,7 +115,7 @@ async function modifica(){
   
   const formData = new FormData()
   // formData.append('foto',fotox.files[0]); // Comentado porque no parece estar relacionado con la lógica de esta función
-  formData.append('numero_predio',numero_usuario); // Ajustado a 'id_predio' según el HTML proporcionado
+  formData.append('numero_predio',numero_predio); // Ajustado a 'id_predio' según el HTML proporcionado
   // formData.append('foto',nombre_foto); // Comentado porque no parece estar relacionado con la lógica de esta función
   formData.append('nombre_predio',nombre_predio);
   formData.append('nombre_propietario',nombre_propietario);

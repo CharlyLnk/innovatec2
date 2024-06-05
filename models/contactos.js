@@ -48,7 +48,7 @@ async function registrarUsuario(datos){
 async function modi(datos, id){
     //let datos2 = [datos.nombre, datos.ap_pat, datos.ap_mat, datos.email, datos.tel, datos.fnac, datos.foto];
     console.log(datos)
-    console.log('>>>>>>'+numero_predio+'<<<<<<')
+    console.log('>>>>>>'+id+'<<<<<<')
     const text_query = `UPDATE predios SET nombre_predio = "${datos.nombre_predio}", nombre_propietario = "${datos.nombre_propietario}", tipo_cultivo = "${datos.tipo_cultivo}", cuerpos_agua = "${datos.cuerpos_agua}",direccion = "${datos.direccion}", ciudad = "${datos.ciudad}", estado = "${datos.estado}", pais = "${datos.pais}", tam_predio = "${datos.tam_predio}", tipo_riego = "${datos.tipo_riego}", tipo_suelo = "${datos.tipo_suelo}", coordenadas = "${datos.coordenadas}", imagen = "${datos.imagen}" WHERE numero_predio = "${id}" `;
  
     console.log(text_query)
