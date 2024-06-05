@@ -110,8 +110,8 @@
                 <label for="cuerpos_agua" class="form-label">Cuerpos de agua</label>
                 <select class="form-select" id="cuerpos_agua" required onchange="handleCuerposAguaChange()">
                   <option value="">Selecciona una opción</option>
-                  <option value="si">Sí</option>
-                  <option value="no">No</option>
+                  <option value="Si">Sí</option>
+                  <option value="No">No</option>
                 </select>
               </div>
               <div class="col-md-6 mb-3">
@@ -272,7 +272,7 @@
     function handleCuerposAguaChange() {
       let cuerposAgua = document.getElementById('cuerpos_agua').value;
       let tipoCuerpoAgua = document.getElementById('tipo_cuerpo_agua');
-      if (cuerposAgua === 'si') {
+      if (cuerposAgua === 'Si') {
         tipoCuerpoAgua.disabled = false;
         tipoCuerpoAgua.required = true;
         tipoCuerpoAgua.value = '';
@@ -287,7 +287,7 @@
     function handleCuerposAguaChange2() {
       let cuerposAgua2 = document.getElementById('cuerpos_agua2').value;
       let tipoCuerpoAgua2 = document.getElementById('tipo_cuerpo_agua2');
-      if (cuerposAgua2 === 'si') {
+      if (cuerposAgua2 === 'Si') {
         tipoCuerpoAgua2.disabled = false;
         tipoCuerpoAgua2.required = true;
         tipoCuerpoAgua2.value = '';

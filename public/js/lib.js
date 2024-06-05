@@ -27,6 +27,8 @@ async function eliminar(nodo){
 async function envia(){
   alert('Se van a enviar los datos');
 
+ 
+
   let nombre_predio = document.getElementById('nombre_predio').value;
   let numero_usuario = document.getElementById('numero_usuario').value;
   let nombre_propietario = document.getElementById('nombre_propietario').value;
@@ -44,7 +46,7 @@ async function envia(){
   let imagen = document.getElementById('imagen').value;
 
   // Validar que el campo tipo_cuerpo_agua no esté vacío
-  if (cuerpos_agua === 'si' && !tipo_cuerpo_agua) {
+  if (cuerpos_agua === 'Si' && !tipo_cuerpo_agua) {
     alert('Debe seleccionar un tipo de cuerpo de agua.');
     return;
   }

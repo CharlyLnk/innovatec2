@@ -69,7 +69,9 @@ app.get('/login', function (req, res){
 });
 //////////////////////////////////////////////////////
 app.get('/consulta',async (req, res) =>{
-  const numero_usuario = req.session.numero_usuario;
+
+  const numero_usuario = req.session.numero_usuario; //Numero usuario
+
   if(!req.session.usuario){
     res.render('login');
   }
@@ -94,10 +96,10 @@ app.post('/datos', async (req, res)=>{
   //const image = req.files.foto;
   //const tiempo = Date.now();
   //const path = __dirname+'/images/'+tiempo+image.name;
-
+  const numero_usuario = req.session.numero_usuario;
   const new_contacto = {
     nombre_predio : req.body.nombre_predio,
-    numero_usuario : req.body.numero_usuario,
+    numero_usuario : numero_usuario,
     nombre_propietario : req.body.nombre_propietario,
     tipo_cultivo : req.body.tipo_cultivo,
     cuerpos_agua : req.body.cuerpos_agua,
