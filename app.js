@@ -157,48 +157,60 @@ app.get('/logout', (req, res) => {
 });
 
 
-app.post('/actualiza', async (req, res)=>{
+app.post('/actualiza', async (req, res) => {
   console.log(req.files);
-
-  console.log('---------'+req.body.id+'-------')
-  debugger
-
-  if (req.files != null){
-    var image = req.files.foto;    
-    console.log('----------'+image.name+'------------')
+  console.log('---------'+req.body.id+'-------');
+  
+  // Comprobamos si se envió una imagen
+  let titulo_foto = '';
+  if (req.files !== null) {
+    const image = req.files.foto;
+    console.log('----------'+image.name+'------------');
     const tiempo = Date.now();
-    var path = __dirname+'/images/'+tiempo+image.name;    
-    var titulo_foto = tiempo+image.name;
-  }else{
-    console.log('no se envio foto')
-    console.log(req.body.foto)
-    var titulo_foto = req.body.foto;
-  }
-
-  id =  req.body.id;
-
-  const new_contacto = {
-   nombre : req.body.nom,
-   ap_pat : req.body.ap_pat,
-   ap_mat : req.body.ap_mat,
-   tel : req.body.telefono,
-   email : req.body.e_mail,
-   fnac : req.body.fnac,
-   foto : titulo_foto
-  }
-
-  //console.log(new_contacto);
-  if (req.files != null){
-    image.mv(path,(error)=>{
-      if (error){ 
+    const path = __dirname + '/images/' + tiempo + image.name;
+    titulo_foto = tiempo + image.name;
+    // Movemos la imagen al directorio de imágenes
+    await image.mv(path, (error) => {
+      if (error) {
         console.log(error);
         return;
       }
     });
+  } else {
+    console.log('No se envió foto');
+    console.log(req.body.foto);
+    titulo_foto = req.body.foto;
   }
-  const result = await ContactosModel.modi(new_contacto, id);
-  res.end(JSON.stringify({ok_res: true}));
+
+  const id = req.body.numero_predio; // Ajustado según el HTML proporcionado
+
+  const new_contacto = {
+    nombre_predio: req.body.nombre_predio,
+    nombre_propietario: req.body.nombre_propietario,
+    tipo_cultivo: req.body.tipo_cultivo,
+    cuerpos_agua: req.body.cuerpos_agua,
+    tipo_cuerpo_agua: req.body.tipo_cuerpo_agua,
+    direccion: req.body.direccion,
+    ciudad: req.body.ciudad,
+    estado: req.body.estado,
+    pais: req.body.pais,
+    tam_predio: req.body.tam_predio,
+    tipo_riego: req.body.tipo_riego,
+    tipo_suelo: req.body.tipo_suelo,
+    coordenadas: req.body.coordenadas,
+    foto: titulo_foto
+  };
+
+  try {
+    // Llama a una función de modelo adecuada para actualizar el contacto
+    const result = await ContactosModel.modi(new_contacto, id);
+    res.json({ ok_res: true });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ ok_res: false, error: 'Hubo un error en el servidor' });
+  }
 });
+
 
 
 

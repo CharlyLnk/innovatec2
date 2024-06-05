@@ -92,30 +92,30 @@ async function envia(){
 async function modifica(){
   alert('Se van a enviar los datos');
 
-  let numero_predio = document.getElementById('numero_predio').value; // Cambiado el id a 'numero_predio' según el HTML proporcionado
+  let numero_usuario = document.getElementById('numero_usuario2').value; // Cambiado el id a 'numero_predio' según el HTML proporcionado
   // var fotox = document.getElementById('foto2'); // Comentado porque no parece estar relacionado con la lógica de esta función
 
-  let nombre_predio = document.getElementById('nombre_predio').value; // Ajustado a 'nombre_predio' según el HTML proporcionado
-  let nombre_propietario = document.getElementById('nombre_propietario').value; // Ajustado a 'nombre_propietario' según el HTML proporcionado
+  let nombre_predio = document.getElementById('nombre_predio2').value; // Ajustado a 'nombre_predio' según el HTML proporcionado
+  let nombre_propietario = document.getElementById('nombre_propietario2').value; // Ajustado a 'nombre_propietario' según el HTML proporcionado
   // Los siguientes campos deben ser ajustados de manera similar según los IDs en el HTML proporcionado
-  let tipo_cultivo = document.getElementById('tipo_cultivo').value;
-  let cuerpos_agua = document.getElementById('cuerpos_agua').value;
-  let tipo_cuerpo_agua = document.getElementById('tipo_cuerpo_agua').value;
-  let direccion = document.getElementById('direccion').value;
-  let ciudad = document.getElementById('ciudad').value;
-  let estado = document.getElementById('estado').value;
+  let tipo_cultivo = document.getElementById('tipo_cultivo2').value;
+  let cuerpos_agua = document.getElementById('cuerpos_agua2').value;
+  let tipo_cuerpo_agua = document.getElementById('tipo_cuerpo_agua2').value;
+  let direccion = document.getElementById('direccion2').value;
+  let ciudad = document.getElementById('ciudad2').value;
+  let estado = document.getElementById('estado2').value;
   let pais = document.getElementById('pais').value;
-  let tam_predio = document.getElementById('tam_predio').value;
-  let tipo_riego = document.getElementById('tipo_riego').value;
-  let tipo_suelo = document.getElementById('tipo_suelo').value;
-  let coordenadas = document.getElementById('coordenadas').value;
+  let tam_predio = document.getElementById('tam_predio2').value;
+  let tipo_riego = document.getElementById('tipo_riego2').value;
+  let tipo_suelo = document.getElementById('tipo_suelo2').value;
+  let coordenadas = document.getElementById('coordenadas2').value;
 
   // Comentado porque parece no estar relacionado con la lógica de esta función
   // nombre_foto = document.getElementById('nom_foto').value;
   
   const formData = new FormData()
   // formData.append('foto',fotox.files[0]); // Comentado porque no parece estar relacionado con la lógica de esta función
-  formData.append('numero_predio',numero_predio); // Ajustado a 'id_predio' según el HTML proporcionado
+  formData.append('numero_predio',numero_usuario); // Ajustado a 'id_predio' según el HTML proporcionado
   // formData.append('foto',nombre_foto); // Comentado porque no parece estar relacionado con la lógica de esta función
   formData.append('nombre_predio',nombre_predio);
   formData.append('nombre_propietario',nombre_propietario);
@@ -164,24 +164,25 @@ function readURL(input) {
 
 //Funcion que muestra formulario para modificare contacto en una ventana modal 
 function show_editar(nodo){
-  let id = nodo.parentNode.parentNode.getAttribute('pos');
-
-  let fila = nodo.parentNode.parentNode;
-  $('#numero_predio').val(id);
-  $('#nombre_predio').val(fila.cells[2].innerHTML);
-  $('#nombre_propietario').val(fila.cells[3].innerHTML);
-  $('#tipo_cultivo').val(fila.cells[4].innerHTML);
-  $('#cuerpos_agua').val(fila.cells[5].innerHTML);
-  $('#tipo_cuerpo_agua').val(fila.cells[6].innerHTML);
-  $('#direccion').val(fila.cells[7].innerHTML);
-  $('#ciudad').val(fila.cells[8].innerHTML);
-  $('#estado').val(fila.cells[9].innerHTML);
-  $('#pais').val(fila.cells[10].innerHTML);
-  $('#tam_predio').val(fila.cells[11].innerHTML);
-  $('#tipo_riego').val(fila.cells[12].innerHTML);
-  $('#tipo_suelo').val(fila.cells[13].innerHTML);
-  $('#coordenadas').val(fila.cells[14].innerHTML);
   
+  let id = nodo.parentNode.parentNode.getAttribute('pos');
+  console.log(id)
+  let fila = nodo.parentNode.parentNode;
+  console.log(fila)
+  $('#nombre_predio2').val(fila.cells[2].innerHTML);
+  $('#nombre_propietario2').val(fila.cells[3].innerHTML);
+  $('#tipo_cultivo2').val(fila.cells[4].innerHTML);
+  $('#cuerpos_agua2').val(fila.cells[5].innerHTML);
+  $('#tipo_cuerpo_agua2').val(fila.cells[6].innerHTML);
+  $('#direccion2').val(fila.cells[7].innerHTML);
+  $('#ciudad2').val(fila.cells[8].innerHTML);
+  $('#estado2').val(fila.cells[9].innerHTML);
+  $('#pais2').val(fila.cells[10].innerHTML);
+  $('#tam_predio2').val(fila.cells[11].innerHTML);
+  $('#tipo_riego2').val(fila.cells[12].innerHTML);
+  $('#tipo_suelo2').val(fila.cells[13].innerHTML);
+  $('#coordenadas2').val(fila.cells[14].innerHTML);
+  $('#numero_predio2').val(id);
 
   /* let fecha = (fila.cells[5].innerHTML).split('/');
 
