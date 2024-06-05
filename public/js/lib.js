@@ -26,13 +26,13 @@ async function eliminar(nodo){
 //Funcion que envia datos al servidor, para insertar un nuevo contacto 
 async function envia(){
   alert('Se van a enviar los datos');
-  // let nombre = $('#nombre').value;
+
   let nombre_predio = document.getElementById('nombre_predio').value;
   let numero_usuario = document.getElementById('numero_usuario').value;
   let nombre_propietario = document.getElementById('nombre_propietario').value;
   let tipo_cultivo = document.getElementById('tipo_cultivo').value;
   let cuerpos_agua = document.getElementById('cuerpos_agua').value;
-  let natural_artificial = document.getElementById('natural_artificial').value;
+  let tipo_cuerpo_agua = document.getElementById('tipo_cuerpo_agua').value;
   let direccion = document.getElementById('direccion').value;
   let ciudad = document.getElementById('ciudad').value;
   let estado = document.getElementById('estado').value;
@@ -43,42 +43,42 @@ async function envia(){
   let coordenadas = document.getElementById('coordenadas').value;
   let imagen = document.getElementById('imagen').value;
 
-/*   if (imagen.value == ''){
-     alert('Debe seleccionar un archivo');
-     return
-  }
- */
-  const formData = new FormData()
-  //formData.append('imagen',imagen.files[0]);
-  formData.append('imagen',imagen);
-  formData.append('nombre_predio',nombre_predio);
-  formData.append('numero_usuario',numero_usuario);
-  formData.append('nombre_propietario',nombre_propietario);
-  formData.append('tipo_cultivo',tipo_cultivo);
-  formData.append('cuerpos_agua',cuerpos_agua);
-  formData.append('natural_artificial',natural_artificial);
-  formData.append('direccion',direccion);
-  formData.append('ciudad',ciudad);
-  formData.append('estado',estado);
-  formData.append('pais',pais);
-  formData.append('tam_predio',tam_predio);
-  formData.append('tipo_riego',tipo_riego);
-  formData.append('tipo_suelo',tipo_suelo);
-  formData.append('coordenadas',coordenadas);
+  const formData = new FormData();
+  formData.append('imagen', imagen);
+  formData.append('nombre_predio', nombre_predio);
+  formData.append('numero_usuario', numero_usuario);
+  formData.append('nombre_propietario', nombre_propietario);
+  formData.append('tipo_cultivo', tipo_cultivo);
+  formData.append('cuerpos_agua', cuerpos_agua);
+  formData.append('tipo_cuerpo_agua', tipo_cuerpo_agua);
+  formData.append('direccion', direccion);
+  formData.append('ciudad', ciudad);
+  formData.append('estado', estado);
+  formData.append('pais', pais);
+  formData.append('tam_predio', tam_predio);
+  formData.append('tipo_riego', tipo_riego);
+  formData.append('tipo_suelo', tipo_suelo);
+  formData.append('coordenadas', coordenadas);
 
-  let respo = await fetch('http://localhost:3000/datos',{
-    method: 'POST',
-    body: formData
-  });
+  try {
+    let respo = await fetch('http://localhost:3000/datos', {
+      method: 'POST',
+      body: formData
+    });
 
-  let result = await respo.json();
+    let result = await respo.json();
 
-  if (result.ok_res){
-    location.href = 'http://localhost:3000/consulta';
-  }else{
-    alert('Hubo un error');
+    if (result.ok_res) {
+      location.href = 'http://localhost:3000/consulta';
+    } else {
+      alert('Hubo un error');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Hubo un error en la comunicación con el servidor');
   }
 }
+
 //--------------------------------------------------------------------
 
 //Funcion que envia datos al servidor, para modificar un contacto 
