@@ -247,9 +247,6 @@ function logout() {
 }
 
 
-
-// Función para registrar un nuevo usuario
-// Función para registrar un nuevo usuario
 // Función para registrar un nuevo usuario
 async function registrarUsuario() {
   const username = document.getElementById('username').value;

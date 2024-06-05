@@ -84,7 +84,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Alta de contacto</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Predio</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -92,7 +92,7 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="numero_usuario" class="form-label">Número del usuario</label>
-                <input type="text" class="form-control" id="numero_usuario" required>
+                <input type="text" class="form-control" id="numero_usuario" required disabled hidden>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="nombre_predio" class="form-label">Nombre del predio</label>
@@ -157,14 +157,14 @@
               </div>
               <div class="col-md-6 mb-3">
                 <label for="imagen" class="form-label">Imagen</label>
-                <input type="text" class="form-control" id="imagen" required>
+                <input type="text" class="form-control" id="imagen" required disabled hidden>
               </div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary" onclick="envia();">Guardar contacto</button>
+          <button type="button" class="btn btn-primary" onclick="envia();">Guardar</button>
         </div>
       </div>
     </div>
@@ -256,7 +256,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary" onclick="modifica();">Guardar contacto</button>
+          <button type="button" class="btn btn-primary" onclick="modifica();">Guardar cambios</button>
         </div>
       </div>
     </div>
